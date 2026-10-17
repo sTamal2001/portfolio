@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+/* Dark mode is class-based so the theme toggle can override the OS setting. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Design tokens ─────────────────────────────────────────────────────────── */
+
+:root {
+  --bg: #ffffff;
+  --bg-subtle: #f6f8fb;
+  --surface: #ffffff;
+  --surface-2: #f1f4f9;
+  --fg: #0b1530;
+  --muted: #475569;
+  --faint: #64748b;
+  --border: #e3e8f0;
+  --border-strong: #cbd5e1;
+  --accent: #0b63f6;
+  --accent-strong: #0750c9;
+  --accent-fg: #ffffff;
+  --accent-soft: #edf4ff;
+  --grid-line: rgb(11 21 48 / 0.06);
+  --ok: #0f7a4f;
+  --warn: #a15c07;
+  --danger: #b42318;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #060b17;
+  --bg-subtle: #0a1222;
+  --surface: #0c1528;
+  --surface-2: #111c33;
+  --fg: #e8edf6;
+  --muted: #a6b2c5;
+  --faint: #8391a8;
+  --border: #1a2740;
+  --border-strong: #2a3a58;
+  --accent: #4d9bff;
+  --accent-strong: #7db6ff;
+  --accent-fg: #06101f;
+  --accent-soft: rgb(77 155 255 / 0.12);
+  --grid-line: rgb(148 163 184 / 0.07);
+  --ok: #4ccf95;
+  --warn: #f2b44c;
+  --danger: #ff8a7a;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-subtle: var(--bg-subtle);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-accent: var(--accent);
+  --color-accent-strong: var(--accent-strong);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-soft: var(--accent-soft);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --color-danger: var(--danger);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ── Base ──────────────────────────────────────────────────────────────────── */
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-fg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Respect users who ask for less motion: no transitions or animations. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Utilities ─────────────────────────────────────────────────────────────── */
+
+/* Faint engineering grid, faded out towards the edges. */
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 100%);
+}
+
+/* Small dot pattern used inside previews. */
+@utility bg-dots {
+  background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
+
+/* A packet travelling down the architecture diagram in the hero. */
+@keyframes travel {
+  0% {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(36px);
+    opacity: 0;
+  }
+}
+
+@utility animate-travel {
+  animation: travel 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
