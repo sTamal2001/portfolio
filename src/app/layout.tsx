@@ -7,21 +7,23 @@ import "./globals.css";
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans", display: "swap" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
 
-const title = `${site.name} | ${site.role}`;
+const defaultTitle = `${site.brandName} | Software Development`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: title, template: `%s | ${site.name}` },
+  title: { default: defaultTitle, template: `%s | ${site.brandName}` },
   description: site.seoDescription,
-  applicationName: site.name,
+  applicationName: site.brandName,
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   keywords: [
+    site.brandName,
     site.name,
     "Software Developer",
     "Full-Stack Developer",
     "React Developer",
     "Node.js Developer",
+    "Laravel Developer",
     "Backend Developer",
     "REST APIs",
     "PostgreSQL",
@@ -33,14 +35,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "/",
-    siteName: site.name,
-    title,
+    siteName: site.brandName,
+    title: defaultTitle,
     description: site.seoDescription,
     locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title,
+    title: defaultTitle,
     description: site.seoDescription,
   },
   robots: { index: true, follow: true },

@@ -150,28 +150,51 @@ export interface WorkflowStep {
 //  Identity & links
 // ─────────────────────────────────────────────────────────────────────────────
 
+export interface ServiceItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  forWhom: string[];
+  capabilities: string[];
+  problemsSolved: string[];
+  technologies: string[];
+  caseStudySlug?: string;
+}
+
+export interface ClientProcessStep {
+  step: string;
+  title: string;
+  description: string;
+}
+
 export const site = {
   /** Canonical URL. Override with NEXT_PUBLIC_SITE_URL if needed. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://tamalslab.in",
 
+  brandName: "Tamal's Lab",
   name: "Tamal Sen",
   role: "Software Developer",
   location: "West Bengal, India",
+
+  homeHeadline: "Building practical software solutions.",
+  homeIntro:
+    "Tamal's Lab is my space for exploring web technologies, developing software projects, and turning technical ideas into practical applications.",
 
   headline: "Building practical web applications and reliable backend systems.",
   intro:
     "I develop web applications and backend systems using React, Node.js, Laravel, and modern database technologies, with a focus on useful functionality, maintainable code, and reliable software.",
 
   /** Small label in the hero. Set to `null` to hide it. */
-  availability: "Open to relevant opportunities" as string | null,
+  availability: "Open to relevant opportunities & projects" as string | null,
 
   /** Used for <meta name="description"> and social cards. */
   seoDescription:
-    "Tamal Sen is a software developer in West Bengal, India, building web applications and backend systems with React, Node.js, REST APIs, PostgreSQL, and MongoDB.",
+    "Tamal's Lab — Software developer building web applications, backend APIs, and reliable database systems with React, Node.js, Laravel, PostgreSQL, and MongoDB.",
 
   links: {
-    email: "stamal2001@gmail.com" as OptionalLink,
-    // Verified: public profile, and the remote of the employee-api repository.
+    email: "hello@tamalslab.in" as OptionalLink,
+    personalEmail: "stamal2001@gmail.com" as OptionalLink,
     github: "https://github.com/sTamal2001" as OptionalLink,
     linkedin: "https://www.linkedin.com/in/stamal2001/" as OptionalLink,
   },
@@ -606,13 +629,178 @@ export const workflowNote =
   "Direct client communication and requirement gathering were part of my AuditFlow work. On other projects I've contributed to specific parts of this process as a member of the team.";
 
 // ─────────────────────────────────────────────────────────────────────────────
-//  Navigation
+//  Client Services
 // ─────────────────────────────────────────────────────────────────────────────
 
-export const navigation = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+export const services: ServiceItem[] = [
+  {
+    id: "web-apps",
+    title: "Web Application Development",
+    subtitle: "Custom business systems, interactive web applications, and robust backends",
+    description:
+      "Developing scalable, maintainable web applications using React, Node.js, and Laravel. From interactive user interfaces to robust database schemas and backend logic, applications are built around real workflows and operational requirements.",
+    forWhom: [
+      "Small businesses replacing manual spreadsheets or fragmented tools with a custom web system",
+      "Startups building a dependable MVP ready for real user testing and validation",
+      "Teams needing internal dashboards, administrative consoles, and operational portals",
+    ],
+    capabilities: [
+      "Full-stack React (Next.js / Vite) and Node.js / Express architectures",
+      "Laravel applications using MVC, Eloquent ORM, Blade templates, and REST APIs",
+      "Relational and document database design (PostgreSQL, MongoDB)",
+      "Role-based access control, secure authentication, and session handling",
+      "Clean, responsive styling with accessible keyboard navigation and fast load times",
+    ],
+    problemsSolved: [
+      "Rigid off-the-shelf software that doesn't fit your operational workflows",
+      "Disorganized data scattered across bank apps, spreadsheets, and emails",
+      "Fragile custom scripts needing consolidation into a reliable web system",
+    ],
+    technologies: ["React", "Node.js", "Laravel", "PHP", "PostgreSQL", "MongoDB", "Tailwind CSS"],
+    caseStudySlug: "ledgerly",
+  },
+  {
+    id: "apis-integrations",
+    title: "API Development & Integration",
+    subtitle: "RESTful endpoints, secure authentication, and system connections",
+    description:
+      "Architecting clean, versioned REST APIs and connecting web applications to external services, webhooks, and third-party platforms with structured validation, authorization, and error handling.",
+    forWhom: [
+      "Applications requiring custom backend logic and secure data endpoints",
+      "Businesses needing integrations between internal systems, CMS, and third-party platforms",
+      "Frontend teams needing reliable, predictable, and well-structured API endpoints",
+    ],
+    capabilities: [
+      "RESTful API design with clean separation: routes, middleware, controllers, and queries",
+      "JWT access tokens, refresh token rotation, and role-based authorization",
+      "High-speed caching with Redis and graceful database fallbacks",
+      "Schema-based request validation (Zod / Request validation) and audit logging",
+      "Connecting web applications with external REST APIs and CMS content pipelines",
+    ],
+    problemsSolved: [
+      "Unreliable or slow API endpoints with inconsistent responses",
+      "Lack of role authorization leading to insecure data modifications",
+      "Data synchronization issues between disconnected software platforms",
+    ],
+    technologies: ["Node.js", "Express.js", "Laravel", "PostgreSQL", "Redis", "JWT", "REST APIs"],
+    caseStudySlug: "employee-api",
+  },
+  {
+    id: "wordpress",
+    title: "WordPress Development & Modernization",
+    subtitle: "Custom functionality, improvements, and headless / modern migrations",
+    description:
+      "Maintaining and improving WordPress websites, implementing custom functionality, optimizing page performance, and assisting with phased migrations to modern frameworks such as Laravel or React.",
+    forWhom: [
+      "Website owners needing reliable maintenance, bug fixes, or functionality enhancements",
+      "Businesses outgrowing generic plugins and needing custom PHP/WordPress logic",
+      "Organizations planning a phased transition from legacy WordPress to modern web frameworks",
+    ],
+    capabilities: [
+      "Custom WordPress development and template improvements",
+      "Content structure and database optimization",
+      "API integrations for CMS-powered multi-site management platforms",
+      "Migration planning and execution from WordPress to Laravel / React architectures",
+      "Troubleshooting plugin conflicts, performance issues, and styling bugs",
+    ],
+    problemsSolved: [
+      "Overloaded plugin stacks causing performance bottlenecks and conflicts",
+      "Broken layouts or functionality following core or plugin updates",
+      "Difficulty managing dynamic content across multiple connected web properties",
+    ],
+    technologies: ["WordPress", "PHP", "Laravel", "MySQL", "JavaScript", "REST APIs"],
+    caseStudySlug: "saas-cms-platform",
+  },
+  {
+    id: "maintenance-support",
+    title: "Technical Support & Deployment",
+    subtitle: "Bug triage, performance tuning, and server configuration",
+    description:
+      "Hands-on engineering support for live web applications. Assisting with Linux server configurations, Nginx reverse proxies, PM2 process management, Vercel deployments, debugging production issues, and keeping codebases healthy.",
+    forWhom: [
+      "Business owners who need dependable technical help for their web systems",
+      "Developers needing assistance with Linux server deployment and hosting",
+      "Teams with unresolved performance bottlenecks or intermittent production bugs",
+    ],
+    capabilities: [
+      "Linux server deployment and environment configuration",
+      "Nginx reverse proxy setup, SSL certificates, and PM2 process monitoring",
+      "Vercel and cloud hosting configuration with direct routing support",
+      "Performance optimization (bundle reduction, query tuning, caching)",
+      "Systematic debugging, error handling, and clean code refactoring",
+    ],
+    problemsSolved: [
+      "Deployment downtime, 502 Bad Gateway errors, or server crashes",
+      "Slow database queries or unoptimized frontend bundles",
+      "Lack of technical documentation for maintaining running servers",
+    ],
+    technologies: ["Linux", "Nginx", "PM2", "Vercel", "Git", "Node.js", "PostgreSQL"],
+    caseStudySlug: "auditflow",
+  },
+];
+
+export const clientProcess: ClientProcessStep[] = [
+  {
+    step: "01",
+    title: "Discovery & Requirements",
+    description:
+      "We discuss your specific business goals, understand how users will interact with the system, clarify edge cases, and define clear acceptance criteria.",
+  },
+  {
+    step: "02",
+    title: "Technical Plan & Scope",
+    description:
+      "I outline the architecture, data model, technology choices, and break down the project into transparent milestones with clear deliverables.",
+  },
+  {
+    step: "03",
+    title: "Iterative Development",
+    description:
+      "Working code is built in structured increments. You receive regular progress updates and testable previews so feedback is integrated early.",
+  },
+  {
+    step: "04",
+    title: "Testing & Refinement",
+    description:
+      "End-to-end flows, error states, and responsive layouts are verified across devices to ensure reliability and performance before launch.",
+  },
+  {
+    step: "05",
+    title: "Deployment & Handover",
+    description:
+      "The application is deployed to your production environment (Vercel, Linux/Nginx, or your cloud host) with clean documentation and handover support.",
+  },
+];
+
+// ─────────────────────────────────────────────────────────────────────────────
+//  Navigation Sets
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** Homepage navigation: intentionally minimal, no prominent resume or services links */
+export const homeNavigation = [
+  { label: "Work", href: "/work" },
+  { label: "Developer Profile", href: "/developer" },
+  { label: "Contact", href: "/contact" },
 ] as const;
+
+/** Internal pages navigation */
+export const siteNavigation = [
+  { label: "Home", href: "/" },
+  { label: "Developer", href: "/developer" },
+  { label: "Work", href: "/work" },
+  { label: "Services", href: "/services" },
+  { label: "Contact", href: "/contact" },
+] as const;
+
+/** Footer navigation: complete directory across the domain */
+export const footerNavigation = [
+  { label: "Home", href: "/" },
+  { label: "Work", href: "/work" },
+  { label: "Developer Profile", href: "/developer" },
+  { label: "Services", href: "/services" },
+  { label: "Résumé", href: "/resume" },
+  { label: "Contact", href: "/contact" },
+] as const;
+
+/** Legacy navigation fallback for existing anchors if needed */
+export const navigation = siteNavigation;

@@ -21,7 +21,7 @@ export default function AppleIcon() {
           position: "relative",
         }}
       >
-        TS
+        TL
         <div
           style={{
             position: "absolute",

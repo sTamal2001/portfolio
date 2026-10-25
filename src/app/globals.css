@@ -150,3 +150,63 @@
 @utility animate-travel {
   animation: travel 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
+
+/* ── Print Stylesheet (for /resume and printable views) ────────────────────── */
+
+@media print {
+  @page {
+    margin: 1.2cm 1.5cm;
+    size: A4 portrait;
+  }
+
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    font-size: 11pt;
+    line-height: 1.45;
+  }
+
+  header,
+  footer,
+  nav,
+  .no-print,
+  #mobile-menu,
+  [role="dialog"] {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .resume-section {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .resume-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border: 1px solid #e5e7eb !important;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+}

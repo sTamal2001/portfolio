@@ -1,13 +1,13 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/config/site";
 
-export const alt = `${site.name} | ${site.role}`;
+export const alt = `${site.brandName} | ${site.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /** Social sharing card, generated at build time from the site config. */
 export default function OpenGraphImage() {
-  const stack = ["React", "Node.js", "REST APIs", "PostgreSQL", "MongoDB"];
+  const stack = ["React", "Node.js", "Laravel", "REST APIs", "PostgreSQL"];
 
   return new ImageResponse(
     (
@@ -35,17 +35,17 @@ export default function OpenGraphImage() {
               width: 64,
               height: 64,
               borderRadius: 14,
-              background: "#e8edf6",
-              color: "#060b17",
+              background: "#4d9bff",
+              color: "#06101f",
               fontSize: 26,
               fontWeight: 700,
             }}
           >
-            TS
+            TL
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 32, fontWeight: 600 }}>{site.name}</div>
-            <div style={{ fontSize: 24, color: "#8391a8" }}>{`${site.role} · ${site.location}`}</div>
+            <div style={{ fontSize: 32, fontWeight: 700 }}>{site.brandName}</div>
+            <div style={{ fontSize: 22, color: "#8391a8" }}>{`${site.name} · ${site.role} · ${site.location}`}</div>
           </div>
         </div>
 
